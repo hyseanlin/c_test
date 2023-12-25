@@ -1,10 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>  // 內含malloc()宣告
+#include <string.h>  // 內含memset()宣告
+
+void printArray(int arr[], int size) {
+  for (int i=0; i<size; i++)
+    printf("%d ", arr[i]);
+}
 
 int main() {
-  int *pt = malloc(sizeof(int));
-  *pt = 345;            // 在動態配置的空間中存入資料
-  printf("動態配置空間的儲存值：%d\n", *pt);
-  free(pt);             // 釋放記憶體空間
-  printf("空間釋放之後：%d\n", *pt);
+  int n = 3;
+  int *arr = (int*)malloc(n*sizeof(int));
+  memset(arr, 0, n*sizeof(int));   // 從arr位址填入0，共n個整數大小。
+  printArray(arr, n);
 }
