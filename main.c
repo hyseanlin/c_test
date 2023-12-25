@@ -1,15 +1,10 @@
 #include <stdio.h>
-
-typedef union {
-  int  i;
-  float f;
-} u_u;  // 自訂「聯合」型態，命名為u_u。
+#include <stdlib.h>
 
 int main() {
-  u_u data;    // 宣告自訂的「聯合」型態變數
-  data.i = 86;   // 設定union變數的i成員（整數值）
-  printf("i: %d\n",data.i);
-  data.f = 3.14;  // 設定union變數的f成員（浮點值）
-  printf("f: %g\n",data.f);  // 讀取浮點成員值
-  printf("i: %d\n",data.i);  // 讀取整數成員值
+  int *pt = malloc(sizeof(int));
+  *pt = 345;            // 在動態配置的空間中存入資料
+  printf("動態配置空間的儲存值：%d\n", *pt);
+  free(pt);             // 釋放記憶體空間
+  printf("空間釋放之後：%d\n", *pt);
 }
